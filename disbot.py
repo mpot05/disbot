@@ -3,6 +3,10 @@ from discord.ext import commands
 import random
 from dotenv import load_dotenv
 from dotenv import dotenv_values
+import serial
+
+# serial port for communication with microbit
+ser = serial.Serial("COM14", 9600)
 
 description = '''
     Merry fitness
