@@ -39,10 +39,20 @@ async def div(ctx, left: float, right: float):
 
 @bot.command()
 async def fuck(ctx):
-     h = "H" * random.randint(1,999)
-     amount = random.randint(4, 999) # 4 so that they all show up
-     amount /= 4 # four evenly-arranged sections
-     await ctx.send("A" + h + ". THE NOISES IN THE WALLS")
+    # a's
+    a = "A" * random.randint(1,999)
+
+    # h's
+    h = "H" * random.randint(1,999)
+
+    # generate the message in varying degress of italicized and bold.
+    walls_norm = "THE NOISES IN THE WALLS " * random.randint(1, 27)
+    walls_ital = "*THE NOISES IN THE WALLS* " * random.randint(0, 27)
+    walls_bold = "**THE NOISES IN THE WALLS** " * random.randint(0, 27)
+    walls_both = "***THE NOISES IN THE WALLS*** " * random.randint(0, 27)
+
+    # send all of it! this is awesome
+    await ctx.send(a + h + ". " + walls_norm + walls_ital + walls_bold + walls_both)
 
 async def on_message(self, message):
         # we do not want the bot to reply to itself
