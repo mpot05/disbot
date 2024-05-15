@@ -4,7 +4,7 @@
 # a bit of a janky script sure, but its pretty convenient i guess.
 
 # python path
-PYTHON_CMD="python3.10"
+PYTHON_CMD="python3.12"
 
 # main python file
 MAIN_PY="disbot.py"
