@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 
 import random
+import datetime
 
 from dotenv import load_dotenv
 from dotenv import dotenv_values
@@ -28,6 +29,7 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix='😀', description=description, intents=intents)
 
+# initialize
 @bot.event
 async def on_ready():
     print(f"Loggin in as {bot.user}")
@@ -36,6 +38,19 @@ async def on_ready():
     await bot.change_presence(activity=discord.CustomActivity(name='Glooping'))
     await bot.change_presence(activity=discord.Game("Team Defense Fort 2"))
 
+@bot.command(help="wildly innacurate")
+async def ping(ctx: commands.Context):
+    # get timestamps
+    msg_time = ctx.message.created_at
+    cur_time = datetime.datetime.now(tz=datetime.timezone.utc)
+
+    # ping time
+    ping_time = cur_time - msg_time
+
+    # turn ping time to milis and send it
+    await ctx.reply("🏓 pong - %gms" % (ping_time.total_seconds() * 1000))
+
+# math ops
 @bot.command(help="adds two numbers")
 async def add(ctx, left: float, right: float):
     await ctx.send("%g" % (left + right))
@@ -52,6 +67,7 @@ async def mult(ctx, left: float, right: float):
 async def div(ctx, left: float, right: float):
     await ctx.send("%g" % (left / right))
 
+# microbit stuff
 @bot.command(help="beeps")
 async def beep(ctx):
     # make sure that the microbit is actually connected (ser != None)
@@ -63,6 +79,7 @@ async def beep(ctx):
 
     await ctx.send("serial code sent.")
 
+# silly stuff
 @bot.command(help="replies with a message")
 async def reply(ctx, *message):
     st = ""
