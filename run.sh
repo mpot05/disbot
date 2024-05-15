@@ -6,7 +6,7 @@
 PYTHON_CMD="python3.10"
 MAIN_PY="disbot.py"
 
-UPDATE_INTERVAL=30
+UPDATE_INTERVAL=600
 
 REFRESH_CMD="git pull"
 
@@ -14,7 +14,7 @@ PID=0
 
 function clean_up() {
     echo $PID
-    
+
     if [[ $PID -ne 0 ]]
     then
         kill $PID
@@ -38,7 +38,7 @@ do
     sleep $UPDATE_INTERVAL
 
     # kill process if it was succesfully instantiated
-    if [ $PID -ne 0 ]
+    if [[ $PID -ne 0 ]]
     then
         kill $PID
     fi
