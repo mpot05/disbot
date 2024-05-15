@@ -39,9 +39,7 @@ async def div(ctx, left: float, right: float):
 
 @bot.command()
 async def reply(ctx, message: str):
-        # we do not want the bot to reply to itself
-
-        await ctx.reply(message)
+    await ctx.reply(message)
 
 @bot.command()
 async def fuck(ctx):
@@ -63,14 +61,6 @@ async def fuck(ctx):
 
     # send all of it! this is awesome
     await ctx.send(a + h + ". " + walls_norm + walls_ital + walls_bold + walls_both)
-
-async def on_message(self, message):
-        # we do not want the bot to reply to itself
-        if message.author.id == self.user.id:
-            return
-
-        if message.content.startswith('!hello'):
-            await message.reply('Hello!', mention_author=True)
 
 config = dotenv_values(".env")
 bot.run(config.get("TOKEN"))
