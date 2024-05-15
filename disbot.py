@@ -63,14 +63,14 @@ async def beep(ctx):
 
     await ctx.send("serial code sent.")
 
-@bot.command()
+@bot.command(help="replies with a message")
 async def reply(ctx, *message):
     st = ""
 
     # add everything in the message
-    for i in message: 
+    for i in message:
         st += i
-    
+
     await ctx.reply(st)
 
 @bot.command()
