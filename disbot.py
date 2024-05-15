@@ -38,6 +38,12 @@ async def div(ctx, left: float, right: float):
     await ctx.send("%g" % (left / right))
 
 @bot.command()
+async def reply(ctx, message: str):
+        # we do not want the bot to reply to itself
+
+        await ctx.reply(message)
+
+@bot.command()
 async def fuck(ctx):
     # a's
     a = "A" * random.randint(1,999)
