@@ -13,12 +13,17 @@ def find_port(pid: int, vid: int, baud: int) -> serial.Serial | None:
 
         # print port info. if there's an error, just skip it
         try:
-            print("pid: " + p.pid + ", vid: " + p.vid)
+            # if values are invalid, throw error
+            if (p.pid == None) and (p.vid == None):
+                raise AttributeError()
+
+            # print values
+            print("pid: {}, vid: {}".format(p.pid, p.vid))
         except AttributeError:
             print("error reading com attrs, skipping...")
             continue
 
-        if (pid.p == pid) and (p.vid == vid):
+        if (p.pid == pid) and (p.vid == vid):
             print("device found!")
             ser.port = str(p.device)
             return ser # return matching port
