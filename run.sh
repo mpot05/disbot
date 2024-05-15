@@ -3,26 +3,36 @@
 # runs the bot, routinely checking for updates from git.
 # a bit of a janky script sure, but its pretty convenient i guess.
 
+# python path
 PYTHON_CMD="python3.10"
+
+# main python file
 MAIN_PY="disbot.py"
 
+# update interval (in seconds, currently set to every 10 minutes)
 UPDATE_INTERVAL=600
 
+# command to run when updating (git pull)
 REFRESH_CMD="git pull"
 
+# process id of the python script, gets set in main loop
 PID=0
 
+# runs if you ctrl+c the process, exiting python and this script.
 function clean_up() {
     echo $PID
 
+    # kill python
     if [[ $PID -ne 0 ]]
     then
         kill $PID
     fi
 
+    # exit script
     exit 0
 }
 
+# set clean_up to run when ctrl+c is pressed
 trap clean_up SIGINT
 
 # while true
@@ -37,7 +47,7 @@ do
     # wait
     sleep $UPDATE_INTERVAL
 
-    # kill process if it was succesfully instantiated
+    # kill the process (if it got set correctly)
     if [[ $PID -ne 0 ]]
     then
         kill $PID
