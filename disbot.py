@@ -46,10 +46,14 @@ async def fuck(ctx):
     h = "H" * random.randint(1,999)
 
     # generate the message in varying degress of italicized and bold.
-    walls_norm = "THE NOISES IN THE WALLS " * random.randint(1, 27)
-    walls_ital = "*THE NOISES IN THE WALLS* " * random.randint(0, 27)
-    walls_bold = "**THE NOISES IN THE WALLS** " * random.randint(0, 27)
-    walls_both = "***THE NOISES IN THE WALLS*** " * random.randint(0, 27)
+    walls_norm = "THE NOISES IN THE WALLS " * random.randint(1, 5)
+    walls_ital = "*THE NOISES IN THE WALLS* " * random.randint(0, 5)
+    walls_bold = "**THE NOISES IN THE WALLS** " * random.randint(0, 5)
+    walls_both = "***THE NOISES IN THE WALLS*** " * random.randint(0, 5)
+
+    if len(a) + len(h) + len(". ") + len(walls_norm) + len(walls_ital) + len(walls_bold) + len(walls_both) >= 2000:
+        a = a[0:len(a)//2]
+        h = h[0:len(h)//2]
 
     # send all of it! this is awesome
     await ctx.send(a + h + ". " + walls_norm + walls_ital + walls_bold + walls_both)
