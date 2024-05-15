@@ -64,6 +64,10 @@ async def beep(ctx):
     await ctx.send("serial code sent.")
 
 @bot.command()
+async def reply(ctx, message: str):
+    await ctx.reply(message)
+
+@bot.command()
 async def fuck(ctx):
     # a's
     a = "A" * random.randint(1,999)
@@ -83,15 +87,6 @@ async def fuck(ctx):
 
     # send all of it! this is awesome
     await ctx.send(a + h + ". " + walls_norm + walls_ital + walls_bold + walls_both)
-
-# this is currently doing nothing
-async def on_message(self, message):
-        # we do not want the bot to reply to itself
-        if message.author.id == self.user.id:
-            return
-
-        if message.content.startswith('!hello'):
-            await message.reply('Hello!', mention_author=True)
 
 config = dotenv_values(".env")
 bot.run(config.get("TOKEN"))
