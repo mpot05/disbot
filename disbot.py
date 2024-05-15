@@ -1,8 +1,22 @@
 import discord
 from discord.ext import commands
+
 import random
+
 from dotenv import load_dotenv
 from dotenv import dotenv_values
+
+import serial
+
+import serial_utils
+
+# serial port constants (sourced from link 2 in links.md)
+MICROBIT_PID = 516
+MICROBIT_VID = 3368
+BAUD = 115200
+
+# serial port of the microbit. can be "None" if no port was found
+ser = serial_utils.find_port(MICROBIT_PID, MICROBIT_VID, BAUD)
 
 description = '''
     Merry fitness
@@ -16,26 +30,38 @@ bot = commands.Bot(command_prefix='😀', description=description, intents=inten
 
 @bot.event
 async def on_ready():
-    print("Loggin in as {bot.user}")
+    print(f"Loggin in as {bot.user}")
+    print("Microbit detected? " + "No" if ser == None else "Yes")
     print("--------")
     await bot.change_presence(activity=discord.CustomActivity(name='Glooping'))
     await bot.change_presence(activity=discord.Game("Team Defense Fort 2"))
 
-@bot.command()
+@bot.command(help="adds two numbers")
 async def add(ctx, left: float, right: float):
     await ctx.send("%g" % (left + right))
 
-@bot.command()
+@bot.command(help="subtracts two numbers")
 async def sub(ctx, left: float, right: float):
     await ctx.send("%g" % (left - right))
 
-@bot.command()
+@bot.command(help="multiplies two numbers")
 async def mult(ctx, left: float, right: float):
     await ctx.send("%g" % (left * right))
 
-@bot.command()
+@bot.command(help="divides two numbers")
 async def div(ctx, left: float, right: float):
     await ctx.send("%g" % (left / right))
+
+@bot.command(help="beeps")
+async def beep(ctx):
+    # make sure that the microbit is actually connected (ser != None)
+    if ser == None:
+        await ctx.send("no microbit connected.")
+        return
+
+    ser.write(b'BEEP.') # implement this on the microbit later
+
+    await ctx.send("serial code sent.")
 
 @bot.command()
 async def reply(ctx, message: str):
