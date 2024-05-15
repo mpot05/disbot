@@ -10,7 +10,7 @@ PYTHON_CMD="python3.12"
 MAIN_PY="disbot.py"
 
 # update interval (in seconds, currently set to every 10 minutes)
-UPDATE_INTERVAL=600
+UPDATE_INTERVAL=1800
 
 # command to run when updating (git pull)
 REFRESH_CMD="git pull"
