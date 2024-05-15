@@ -25,19 +25,19 @@ async def on_ready():
     await bot.change_presence(activity=discord.CustomActivity(name='Glooping'))
     await bot.change_presence(activity=discord.Game("Team Defense Fort 2"))
 
-@bot.command()
+@bot.command(help="adds two numbers")
 async def add(ctx, left: float, right: float):
     await ctx.send("%g" % (left + right))
 
-@bot.command()
+@bot.command(help="subtracts two numbers")
 async def sub(ctx, left: float, right: float):
     await ctx.send("%g" % (left - right))
 
-@bot.command()
+@bot.command(help="multiplies two numbers")
 async def mult(ctx, left: float, right: float):
     await ctx.send("%g" % (left * right))
 
-@bot.command()
+@bot.command(help="divides two numbers")
 async def div(ctx, left: float, right: float):
     await ctx.send("%g" % (left / right))
 
@@ -62,6 +62,7 @@ async def fuck(ctx):
     # send all of it! this is awesome
     await ctx.send(a + h + ". " + walls_norm + walls_ital + walls_bold + walls_both)
 
+# this is currently doing nothing
 async def on_message(self, message):
         # we do not want the bot to reply to itself
         if message.author.id == self.user.id:
