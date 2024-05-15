@@ -13,7 +13,9 @@ REFRESH_CMD="git pull"
 PID=0
 
 function clean_up() {
-    if [$PID -ne 0]
+    echo $PID
+    
+    if [[ $PID -ne 0 ]]
     then
         kill $PID
     fi
@@ -36,7 +38,7 @@ do
     sleep $UPDATE_INTERVAL
 
     # kill process if it was succesfully instantiated
-    if [$PID -ne 0]
+    if [ $PID -ne 0 ]
     then
         kill $PID
     fi
