@@ -69,7 +69,7 @@ async def reply(ctx, *message):
 
     # add everything in the message
     for i in message:
-        st += i
+        st += i + " "
 
     await ctx.reply(st)
 
