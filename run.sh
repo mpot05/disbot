@@ -13,7 +13,7 @@ MAIN_PY="disbot.py"
 UPDATE_INTERVAL=1800
 
 # command to run when updating (git pull)
-REFRESH_CMD="git pull"
+REFRESH_CMD="git pull origin main"
 
 # process id of the python script, gets set in main loop
 PID=0
