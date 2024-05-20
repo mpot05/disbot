@@ -90,6 +90,16 @@ async def reply(ctx, *message):
 
     await ctx.reply(st)
 
+# literally just reply without replying
+@bot.command(help="Have the bot say something (use at own risk)")
+async def say(ctx, *message):
+    st = ""
+
+    for i in message:
+        st += i + " "
+    
+    await ctx.send(st)
+
 @bot.command()
 async def fuck(ctx):
     # a's
