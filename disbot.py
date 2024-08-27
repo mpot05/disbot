@@ -26,6 +26,8 @@ description = '''
 intents = discord.Intents.default()
 intents.members = True
 intents.message_content = True
+intents.dm_messages = True
+intents.guild_messages = True
 
 bot = commands.Bot(command_prefix='😀', description=description, intents=intents)
 
@@ -120,6 +122,47 @@ async def fuck(ctx):
 
     # send all of it! this is awesome
     await ctx.send(a + h + ". " + walls_norm + walls_ital + walls_bold + walls_both)
+
+@bot.command()
+async def pickAgent(ctx, role = "None"):
+    agents = ["Brimstone : Smokes", 
+              "Phoenix : Duelist", 
+              "Sage : Sentinel", 
+              "Sova : Initiator", 
+              "Viper : Smokes", 
+              "Cypher : Sentinel", 
+              "Reyna : Duelist", 
+              "Killjoy : Sentinel", 
+              "Breach : Initiator", 
+              "Omen : Smokes", 
+              "Jett : Duelist", 
+              "Raze : Duelist", 
+              "Skye : Initiator", 
+              "Yoru : Duelist", 
+              "Astra : Smokes", 
+              "Kayo : Initiator", 
+              "Chamber : Sentinel", 
+              "Neon : Duelist", 
+              "Fade : Initiator", 
+              "Harbor : Smokes", 
+              "Gekko : Initiator", 
+              "Deadlock : Sentinel", 
+              "Iso : Duelist", 
+              "Clove : Smokes"
+              ]
+    def pick(type: str) -> int:
+        randnum = random.randint(0,len(agents)-1)
+        if agents[randnum].endswith(type):
+            return randnum
+        else:
+            return pick(type)
+
+    if role == "None":
+        num = random.randint(0,len(agents)-1)
+    else:
+        num = pick(role)
+
+    await ctx.send(agents[num])
 
 config = dotenv_values(".env")
 bot.run(config.get("TOKEN"))
